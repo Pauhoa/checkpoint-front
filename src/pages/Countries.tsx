@@ -15,26 +15,26 @@ function Countries() {
     const { loading, error, data } = useQuery(GET_COUNTRIES_BY_CONTINENTS, {
         variables: { continentCode }
     });
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+    if (error) {
+        return <div>Error</div>;
+    }
+    const { countries } = data.continent;
 
     return (
         <div>
-            <h1>Countries</h1>
-            {loading ? (
-                <p>Loading...</p>
-            ) : error ? (
-                <p>Error: {error.message}</p>
-            ) : (
-                <ul>
-                    {data.continent.countries.map((country: ICountry) => (
-                        <li key={country.code}>
-                            <Link to={`/countries/${country.code}`}>
-                                {country.emoji}
-                                {country.name}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            )}
+            <ul>
+                {countries.map((country: ICountry) => (
+                    <li key={country.code}>
+                        <Link to={`/countries/${country.code}`}>
+                            {country.emoji}
+                            {country.name}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

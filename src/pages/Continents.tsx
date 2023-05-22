@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { GET_CONTINENTS } from '../gql/queries';
@@ -13,11 +13,9 @@ function Continents() {
     if (loading) {
         return <div>Loading...</div>;
     }
-
     if (error) {
         return <div>Error</div>;
     }
-
     const continents = data.continents;
 
     return (
