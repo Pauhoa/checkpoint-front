@@ -10,7 +10,6 @@ interface IContinent {
 
 function Continents() {
     const { loading, error, data } = useQuery(GET_CONTINENTS);
-
     if (loading) {
         return <div>Loading...</div>;
     }
