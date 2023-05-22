@@ -20,3 +20,14 @@ export const GET_COUNTRIES_BY_CONTINENTS = gql`
     }
   }
 `;
+
+export const GET_COUNTRY = gql`
+  query ($countryCode: ID!) {
+    country(code: $countryCode) {
+      name
+      emoji
+      currency
+      capital
+    }
+  }
+`;

@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import { GET_COUNTRIES_BY_CONTINENTS } from '../gql/queries';
 import { Link, useParams } from "react-router-dom";
 
-interface ICountry {
+export interface ICountry {
     code: string;
     name: string;
     emoji: string;
@@ -27,7 +27,7 @@ function Countries() {
                 <ul>
                     {data.continent.countries.map((country: ICountry) => (
                         <li key={country.code}>
-                            <Link to={`/country/${country.code}`}>
+                            <Link to={`/countries/${country.code}`}>
                                 {country.emoji}
                                 {country.name}
                             </Link>
