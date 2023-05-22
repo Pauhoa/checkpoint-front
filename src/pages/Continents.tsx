@@ -9,6 +9,8 @@ interface IContinent {
 }
 
 function Continents() {
+    const [search, setSearch] = useState('');
+
     const { loading, error, data } = useQuery(GET_CONTINENTS);
     if (loading) {
         return <div>Loading...</div>;
@@ -18,11 +20,19 @@ function Continents() {
     }
     const continents = data.continents;
 
+    const filteredContinents = continents.filter((continent: IContinent) =>continent.name.toLowerCase().includes(search.toLowerCase()) )
+
     return (
         <div>
             <h1>Continents</h1>
+            <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Rechercher..."
+            />
             <ul>
-                {continents.map((continent: IContinent) => (
+                {filteredContinents.map((continent: IContinent) => (
                     <li key={continent.code}>
                         <Link to={`/continents/${continent.code}`}>{continent.name}</Link>
                     </li>
